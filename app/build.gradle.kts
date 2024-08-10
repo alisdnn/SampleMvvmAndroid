@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.runner)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -86,4 +87,47 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.logging.interceptor)
 
+    // JUnit
+    testImplementation(libs.junit)
+
+    // Mockito
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.mockito.kotlin)
+
+    // Coroutines Testing
+    testImplementation(libs.coroutines.test)
+
+    // Hilt Testing
+    testImplementation(libs.hilt.android.testing)
+    kaptTest(libs.hilt.android.compiler)
+
+    // AndroidX Testing
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.arch.core.testing)
+
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.android.compiler)
+
+    // Compose Testing
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.2.1")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.2.1")
+
+
+    // For Robolectric tests.
+    testImplementation(libs.hilt.android.testing.v244)
+    // ...with Kotlin.
+    kaptTest(libs.hilt.android.compiler.v2511)
+    // ...with Java.
+    testAnnotationProcessor(libs.dagger.hilt.android.compiler.v244)
+
+
+    // For instrumented tests.
+    androidTestImplementation(libs.hilt.android.testing.v249)
+    // ...with Kotlin.
+    kaptAndroidTest(libs.hilt.android.compiler.v2511)
+    // ...with Java.
+    androidTestAnnotationProcessor(libs.hilt.android.compiler.v2511)
 }

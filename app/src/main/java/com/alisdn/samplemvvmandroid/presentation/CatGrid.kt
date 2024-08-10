@@ -24,6 +24,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.unit.dp
@@ -73,12 +74,14 @@ fun CatGrid(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
-                    horizontalArrangement = Arrangement.Center
+                        .padding(bottom = 50.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(text = "Page Size: ")
                     listOf(10, 20, 50, 100).forEach { size ->
-                        Button(onClick = {
+                        Button(modifier = Modifier.padding(end = 2.dp),
+                            onClick = {
                             viewModel.changePageSize(size)
                             pageSize = size
                             currentPage = 0 // Reset to the first page when page size changes
@@ -89,11 +92,11 @@ fun CatGrid(
                 }
             }
         }
-    ) {
+    ) { paddingValues ->
         // The LazyVerticalGrid displaying the list of cats
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.padding(paddingValues)
         ) {
             items(cats) { cat ->
                 Image(

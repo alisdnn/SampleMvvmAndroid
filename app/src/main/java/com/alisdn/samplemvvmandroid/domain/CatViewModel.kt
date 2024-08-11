@@ -1,11 +1,7 @@
 package com.alisdn.samplemvvmandroid.domain
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alisdn.samplemvvmandroid.data.ApiService
-import com.alisdn.samplemvvmandroid.data.CatResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,8 +17,12 @@ class CatViewModel
     private val _cats = MutableStateFlow<List<Cat>>(emptyList())
     val cats: StateFlow<List<Cat>> = _cats
 
-    private var currentPage = 0
-    private var pageSize = 50
+    private var _isLoading = MutableStateFlow(true)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
+    private var currentPage = 1
+    private var pageSize = 10
+
 
     init {
         fetchCats()
@@ -30,10 +30,12 @@ class CatViewModel
 
     fun fetchCats(page: Int = currentPage, size: Int = pageSize) {
         viewModelScope.launch {
+            _isLoading.value = true
             val newCats = catRepository.getCats(size, page)
             _cats.value = newCats
             currentPage = page
             pageSize = size
+            _isLoading.value = false
         }
     }
 
@@ -48,6 +50,6 @@ class CatViewModel
     }
 
     fun changePageSize(newSize: Int) {
-        fetchCats(0, newSize) // Start over from the first page with the new size
+        fetchCats(1, newSize) // Start over from the first page with the new size
     }
 }

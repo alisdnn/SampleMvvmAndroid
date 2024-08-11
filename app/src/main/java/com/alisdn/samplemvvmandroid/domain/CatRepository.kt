@@ -1,8 +1,6 @@
 package com.alisdn.samplemvvmandroid.domain
 
-import com.alisdn.samplemvvmandroid.data.ApiService
-import com.alisdn.samplemvvmandroid.data.CatResponse
-import com.alisdn.samplemvvmandroid.data.toCat
+import com.alisdn.samplemvvmandroid.data.network.ApiService
 import javax.inject.Inject
 
 class CatRepository

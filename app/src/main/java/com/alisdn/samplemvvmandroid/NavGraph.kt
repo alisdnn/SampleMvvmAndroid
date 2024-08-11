@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.alisdn.samplemvvmandroid.domain.CatViewModel
 import com.alisdn.samplemvvmandroid.presentation.CatDetailScreen
-import com.alisdn.samplemvvmandroid.presentation.CatGrid
+import com.alisdn.samplemvvmandroid.presentation.CatGridScreen
 
 @Composable
 fun NavGraph(startDestination: String = "cat_grid") {
@@ -16,7 +16,7 @@ fun NavGraph(startDestination: String = "cat_grid") {
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable("cat_grid") {
-            CatGrid(navController = navController, viewModel = sharedViewModel) { selectedCat ->
+            CatGridScreen(viewModel = sharedViewModel) { selectedCat ->
                 navController.navigate("cat_details/${selectedCat.id}")
             }
         }

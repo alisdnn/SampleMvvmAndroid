@@ -1,6 +1,6 @@
-package com.alisdn.samplemvvmandroid.data
+package com.alisdn.samplemvvmandroid.data.network
 
-import com.alisdn.samplemvvmandroid.domain.Cat
+import com.alisdn.samplemvvmandroid.data.CatResponse
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -10,7 +10,6 @@ interface ApiService {
     suspend fun getCats(
         @Query("limit") limit: Int,
         @Query("page") page: Int,
-        @Query("order") order: String = "Desc",
-        @Header("x-api-key") apiKey: String = "24be637f-e596-4847-b47a-1791feeea1bd"
+        @Query("order") order: String = "Desc"
     ): List<CatResponse>
 }

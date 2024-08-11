@@ -112,8 +112,8 @@ dependencies {
     kaptAndroidTest(libs.hilt.android.compiler)
 
     // Compose Testing
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.2.1")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.2.1")
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.test.manifest)
 
 
     // For Robolectric tests.
@@ -130,4 +130,7 @@ dependencies {
     kaptAndroidTest(libs.hilt.android.compiler.v2511)
     // ...with Java.
     androidTestAnnotationProcessor(libs.hilt.android.compiler.v2511)
+
+    debugImplementation(libs.chucker)
+    releaseImplementation(libs.chucker.no.op)
 }
